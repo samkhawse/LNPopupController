@@ -131,8 +131,8 @@
 - (CGSize)sizeThatFits:(CGSize)size
 {
 	CGSize superSize = [super sizeThatFits:size];
-	superSize.width += 14;
-	superSize.height += 2;
+    superSize.width += 32;
+    superSize.height = superSize.width;
 	
 	return superSize;
 }
