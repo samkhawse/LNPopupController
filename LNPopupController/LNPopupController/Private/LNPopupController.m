@@ -189,7 +189,12 @@ static const CGFloat        LNPopupBarGestureSnapOffset = 40;
 - (CGRect)_frameForClosedPopupBar
 {
 	CGRect defaultFrame = [_containerController defaultFrameForBottomDockingView_internalOrDeveloper];
-	return CGRectMake(defaultFrame.origin.x, defaultFrame.origin.y - _popupBar.frame.size.height, _containerController.view.bounds.size.width, _popupBar.frame.size.height);
+    
+    // Solution for vanishing MiniViewController
+    CGFloat newHeight = _popupBar.frame.size.height == 0 ? defaultFrame.origin.y : _popupBar.frame.origin.y;
+    return CGRectMake(defaultFrame.origin.x, newHeight, _containerController.view.bounds.size.width, _popupBar.frame.size.height);
+    
+	//return CGRectMake(defaultFrame.origin.x, defaultFrame.origin.y - _popupBar.frame.size.height, _containerController.view.bounds.size.width, _popupBar.frame.size.height);
 }
 
 - (void)_repositionPopupContent
